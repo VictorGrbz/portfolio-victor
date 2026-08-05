@@ -37,7 +37,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlashThemeScript }} />
       </head>
-      <body className="flex min-h-full flex-col bg-background text-foreground">
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-background text-foreground">
         <Nav />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-(--color-divider) px-6 py-8 text-center text-xs opacity-60">

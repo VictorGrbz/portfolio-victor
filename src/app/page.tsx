@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       {/* HERO */}
-      <section className="relative flex flex-wrap items-start gap-12 px-5 py-16 sm:px-12 sm:py-24">
+      <section className="relative flex flex-wrap items-start gap-12 overflow-hidden px-5 py-16 sm:px-12 sm:py-24">
         <div className="min-w-0 flex-1 basis-[480px]">
           <div className="mb-4 text-[11px] tracking-[0.12em] uppercase text-accent">
             Automatisation &amp; IA — appuyées sur 10 ans de terrain IT

@@ -42,16 +42,6 @@ export function ProjectCard({
             Voir la démo
           </button>
         )}
-        {project.codeUrl && (
-          <a
-            href={project.codeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 rounded-xl border border-(--color-divider) px-3.5 py-2 text-center text-xs font-semibold hover:border-accent"
-          >
-            Code
-          </a>
-        )}
       </div>
     </div>
   );
