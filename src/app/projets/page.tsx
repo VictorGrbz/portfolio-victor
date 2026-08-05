@@ -1,39 +1,39 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ProjectCard } from "@/components/project-card";
+import { projects } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Projets — Victor Garbez",
 };
 
-const projets = [
-  { nom: "Projet 1", description: "Nom et contenu à venir." },
-  { nom: "Projet 2", description: "Nom et contenu à venir." },
-];
-
 export default function ProjetsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-2xl font-semibold tracking-tight">Projets</h1>
-      <p className="mt-3 max-w-2xl text-neutral-600 dark:text-neutral-400">
-        Cette section rassemblera mes futurs projets vitrines. Pour
-        l&apos;instant, elle est en construction.
-      </p>
+    <div>
+      <section className="px-5 pt-16 pb-6 sm:px-12 sm:pt-24 sm:pb-10">
+        <Link href="/" className="mb-6 inline-block text-[13px]">
+          ← Accueil
+        </Link>
+        <h1 className="m-0 mb-4 max-w-[16ch] text-[30px] sm:text-[44px]">
+          Projets
+        </h1>
+        <p className="m-0 max-w-[56ch] text-[15px] opacity-80">
+          Six démonstrations pensées pour un large public — TPE, artisans,
+          commerces, professionnels. Chaque projet avance vers une démo live
+          cliquable et un dépôt de code public ; l&apos;état d&apos;avancement
+          est indiqué sur chaque carte.
+        </p>
+      </section>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
-        {projets.map((projet) => (
-          <div
-            key={projet.nom}
-            className="rounded-lg border border-dashed border-black/15 p-6 dark:border-white/15"
-          >
-            <span className="inline-block rounded-full bg-neutral-100 px-2.5 py-0.5 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400">
-              En construction
-            </span>
-            <h2 className="mt-3 font-medium">{projet.nom}</h2>
-            <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-              {projet.description}
-            </p>
-          </div>
-        ))}
-      </div>
+      <div className="h-0.5 bg-(--color-divider)" />
+
+      <section className="px-5 py-16 sm:px-12 sm:py-24">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[18px]">
+          {projects.map((p) => (
+            <ProjectCard key={p.slug} project={p} large />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

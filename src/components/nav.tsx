@@ -1,31 +1,48 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
   { href: "/", label: "Accueil" },
   { href: "/projets", label: "Projets" },
-  { href: "/priv/nous", label: "Espace privé" },
 ];
 
 export function Nav() {
+  const pathname = usePathname();
+
   return (
-    <header className="border-b border-black/10 dark:border-white/10">
-      <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
-          Victor Garbez
+    <header
+      className="flex flex-wrap items-center gap-4 px-5 py-4 sm:px-8"
+      style={{ backgroundColor: "#EC3013" }}
+    >
+      <Link
+        href="/"
+        className="mr-auto font-display text-lg font-extrabold text-[#f8f4f4]"
+      >
+        Victor Garbez
+      </Link>
+
+      <div className="flex flex-wrap items-center gap-6">
+        {links.map((link) => {
+          const active = pathname === link.href;
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm"
+              style={{ color: active ? "#201e1d" : "#f8f4f4" }}
+            >
+              {link.label}
+            </Link>
+          );
+        })}
+        <Link href="/priv/nous" className="text-sm text-[#f8f4f4] opacity-75 hover:opacity-100">
+          Espace privé
         </Link>
-        <ul className="flex gap-6 text-sm text-neutral-600 dark:text-neutral-400">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="transition-colors hover:text-neutral-950 dark:hover:text-neutral-50"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+        <ThemeToggle className="border-[#f8f4f4] text-[#f8f4f4]" />
+      </div>
     </header>
   );
 }

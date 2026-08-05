@@ -1,22 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { Nav } from "@/components/nav";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "600", "800"],
 });
 
 export const metadata: Metadata = {
   title: "Victor Garbez",
-  description: "Chef de projet outils digitaux, en reconversion vers l'automatisation et l'IA.",
+  description:
+    "Automatisation & IA — appuyées sur 10 ans de terrain IT (gestion de projets techniques, affichage dynamique, support).",
 };
+
+const noFlashThemeScript = `
+try {
+  var stored = localStorage.getItem('theme');
+  var theme = stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  if (theme === 'dark') document.documentElement.classList.add('dark');
+} catch (e) {}
+`;
 
 export default function RootLayout({
   children,
@@ -26,12 +31,16 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${archivo.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: noFlashThemeScript }} />
+      </head>
+      <body className="flex min-h-full flex-col bg-background text-foreground">
         <Nav />
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-black/10 px-6 py-8 text-center text-xs text-neutral-500 dark:border-white/10 dark:text-neutral-500">
+        <footer className="border-t border-(--color-divider) px-6 py-8 text-center text-xs opacity-60">
           Victor Garbez — Thumeries, France
         </footer>
       </body>
