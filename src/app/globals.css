@@ -3,44 +3,53 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg: #f3f2f2;
-  --surface: #eae9e9;
-  --text: #201e1d;
-  --accent: #ec3013;
-  --accent-2: #e15b47;
-  --divider: color-mix(in srgb, #201e1d 40%, transparent);
+  /* Instrument Panel — light (Paper/Ink) */
+  --bg: #f2f0eb;
+  --surface: #e8e4db;
+  --text: #201d1a;
+  --text-muted: #635c52;
+  --accent: #a8461c;
+  --accent-2: #33505f;
+  --divider: color-mix(in srgb, #201d1a 12%, transparent);
 
-  --neutral-100: #f8f4f4;
-  --neutral-800: #444141;
+  --neutral-100: #f7f5f1;
+  --accent-contrast: var(--neutral-100);
 
-  --accent-100: #fff2ef;
-  --accent-800: #7c1405;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 
-  --font-heading-weight: 800;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
 
-  --shadow-glass: 0 8px 32px color-mix(in srgb, black 10%, transparent), inset 0 1px 0 color-mix(in srgb, white 40%, transparent);
+  --shadow-glass: 0 8px 32px color-mix(in srgb, black 10%, transparent), inset 0 1px 0 color-mix(in srgb, var(--text) 6%, transparent);
+  --shadow-card: 0 4px 12px color-mix(in srgb, var(--text) 8%, transparent);
 }
 
 .dark {
-  --bg: #161418;
-  --surface: #211e23;
-  --text: #f2f0ee;
-  --divider: color-mix(in srgb, #f2f0ee 26%, transparent);
+  /* Instrument Panel — dark (Graphite) */
+  --bg: #17181a;
+  --surface: #201f21;
+  --text: #f1eee7;
+  --text-muted: #a8a199;
+  --accent: #cb7a45;
+  --accent-2: #6e93a3;
+  --divider: color-mix(in srgb, #f1eee7 16%, transparent);
+  /* Light text on the brightened dark-mode copper falls to 3:1; ink reads at 5.4:1. */
+  --accent-contrast: #17181a;
 }
 
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--text);
+  --color-foreground-muted: var(--text-muted);
   --color-surface: var(--surface);
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
-  --color-accent-100: var(--accent-100);
-  --color-accent-800: var(--accent-800);
   --color-neutral-100: var(--neutral-100);
-  --color-neutral-800: var(--neutral-800);
   --color-divider: var(--divider);
   --font-sans: var(--font-archivo), system-ui, sans-serif;
   --font-display: var(--font-archivo), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
 body {
@@ -52,24 +61,119 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-archivo), system-ui, sans-serif;
-  font-weight: var(--font-heading-weight);
+  text-wrap: balance;
+}
+
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-weight: 700;
   letter-spacing: -0.015em;
 }
 
+h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+a {
+  text-underline-offset: 4px;
+}
+
+/* One instrument moment: reserved for the hero stat cluster only. */
 .glass-card {
   background: color-mix(in srgb, var(--surface) 55%, transparent);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid color-mix(in srgb, white 30%, transparent);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
   box-shadow: var(--shadow-glass);
+  border-radius: var(--radius-lg);
 }
 
-.tag-neutral {
-  background: var(--neutral-100);
-  color: var(--neutral-800);
+/* Flat card: project + list items. Border carries the edge; shadow only on hover. */
+.panel-card {
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s var(--ease-standard), transform 0.2s var(--ease-standard), box-shadow 0.2s var(--ease-standard);
 }
 
-.tag-outline {
-  border: 1px solid var(--accent);
-  color: var(--accent);
+.panel-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--divider));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.chip-live {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.chip-pending {
+  border: 1px solid var(--divider);
+  color: var(--text-muted);
+}
+
+.chip-demo {
+  border: 1px solid var(--divider);
+  color: var(--text-muted);
+}
+
+.tag-pill {
+  border: 1px solid var(--divider);
+  color: var(--text-muted);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  transition: background-color 0.15s var(--ease-standard), transform 0.1s var(--ease-standard);
+}
+
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--accent) 92%, black);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.btn-secondary {
+  border: 1px solid var(--divider);
+  color: var(--text);
+  transition: border-color 0.15s var(--ease-standard), background-color 0.15s var(--ease-standard);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text);
+  background: var(--surface);
+}
+
+.link-ghost {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s var(--ease-standard);
+}
+
+.link-ghost:hover {
+  text-decoration-color: currentColor;
 }

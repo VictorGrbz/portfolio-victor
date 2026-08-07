@@ -9,27 +9,34 @@ export function ProjectCard({
   project: Project;
   large?: boolean;
 }) {
+  const isLive = project.status === "En ligne";
+
   return (
-    <div
-      className={`glass-card flex flex-col gap-3 rounded-[20px] ${large ? "p-7" : "p-6"}`}
-    >
-      <div className="flex items-start justify-between gap-2">
-        <h3 className={`m-0 ${large ? "text-lg" : "text-base"}`}>{project.title}</h3>
-        <span className="tag-neutral shrink-0 rounded-[10px] px-2.5 py-1 text-[10px]">
+    <div className={`panel-card flex flex-col gap-3 ${large ? "p-7" : "p-6"}`}>
+      <h3 className={`m-0 ${large ? "text-lg" : "text-base"}`}>{project.title}</h3>
+
+      <div className="flex flex-wrap gap-1.5 font-mono text-[10px] tracking-[0.08em] uppercase">
+        <span
+          className={`rounded-[var(--radius-sm)] px-2 py-1 ${isLive ? "chip-live" : "chip-pending"}`}
+        >
           {project.status}
         </span>
+        <span className="chip-demo rounded-[var(--radius-sm)] px-2 py-1">
+          Démonstration
+        </span>
       </div>
-      <p className="m-0 flex-1 text-[13px] leading-relaxed opacity-80">
+
+      <p className="m-0 flex-1 text-[13px] leading-relaxed text-(--color-foreground-muted)">
         {project.summary}
       </p>
+
       <div className="mt-1 flex gap-2">
         {project.demoUrl ? (
           <a
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 rounded-xl px-3.5 py-2 text-center text-xs font-semibold text-[#f8f4f4]"
-            style={{ backgroundColor: "var(--color-accent)" }}
+            className="btn-primary flex-1 rounded-[var(--radius-md)] px-3.5 py-3 text-center text-xs font-semibold"
           >
             Voir la démo
           </a>
@@ -37,9 +44,9 @@ export function ProjectCard({
           <button
             type="button"
             disabled
-            className="flex-1 cursor-not-allowed rounded-xl border border-(--color-divider) px-3.5 py-2 text-xs opacity-45"
+            className="btn-primary flex-1 rounded-[var(--radius-md)] px-3.5 py-3 text-xs font-semibold"
           >
-            Voir la démo
+            Démo à venir
           </button>
         )}
       </div>

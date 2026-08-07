@@ -13,14 +13,8 @@ export function Nav() {
   const pathname = usePathname();
 
   return (
-    <header
-      className="flex flex-wrap items-center gap-4 px-5 py-4 sm:px-8"
-      style={{ backgroundColor: "#EC3013" }}
-    >
-      <Link
-        href="/"
-        className="mr-auto font-display text-lg font-extrabold text-[#f8f4f4]"
-      >
+    <header className="flex flex-wrap items-center gap-4 border-b border-(--color-divider) bg-background px-5 py-4 sm:px-8">
+      <Link href="/" className="mr-auto font-display text-lg font-semibold">
         Victor Garbez
       </Link>
 
@@ -31,17 +25,24 @@ export function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm"
-              style={{ color: active ? "#201e1d" : "#f8f4f4" }}
+              aria-current={active ? "page" : undefined}
+              className={`text-sm ${
+                active
+                  ? "font-semibold text-accent underline decoration-2 underline-offset-[6px]"
+                  : "text-foreground/80 hover:text-foreground"
+              }`}
             >
               {link.label}
             </Link>
           );
         })}
-        <Link href="/priv/nous" className="text-sm text-[#f8f4f4] opacity-75 hover:opacity-100">
+        <Link
+          href="/priv/nous"
+          className="text-sm text-(--color-foreground-muted) hover:text-foreground"
+        >
           Espace privé
         </Link>
-        <ThemeToggle className="border-[#f8f4f4] text-[#f8f4f4]" />
+        <ThemeToggle />
       </div>
     </header>
   );

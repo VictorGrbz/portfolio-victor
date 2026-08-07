@@ -47,7 +47,6 @@ export const projects = [
       "Un site vitrine complet pour un commerce de proximité : galerie, présentation des services, prise de contact.",
     status: "En ligne",
     demoUrl: "https://restaurant.jess-vic.ovh",
-    codeUrl: "https://github.com/VictorGrbz/demo-vitrine-restaurant",
   },
   {
     slug: "boutique-en-ligne",
@@ -55,7 +54,6 @@ export const projects = [
     summary: "Une boutique e-commerce avec catalogue, panier et paiement sécurisé.",
     status: "À venir",
     demoUrl: null,
-    codeUrl: null,
   },
   {
     slug: "reservation-en-ligne",
@@ -63,7 +61,6 @@ export const projects = [
     summary: "Une prise de rendez-vous en ligne avec gestion des créneaux et confirmation automatique.",
     status: "À venir",
     demoUrl: null,
-    codeUrl: null,
   },
   {
     slug: "dashboard-saas",
@@ -71,7 +68,6 @@ export const projects = [
     summary: "Une interface SaaS multi-utilisateurs avec authentification, rôles et abonnement.",
     status: "À venir",
     demoUrl: null,
-    codeUrl: null,
   },
   {
     slug: "gestion-taches",
@@ -79,7 +75,6 @@ export const projects = [
     summary: "Un outil de gestion de projet collaboratif en temps réel, façon Trello.",
     status: "À venir",
     demoUrl: null,
-    codeUrl: null,
   },
   {
     slug: "chatbot-ia",
@@ -87,6 +82,5 @@ export const projects = [
     summary: "Un chatbot IA intégrable pour répondre automatiquement aux questions clients.",
     status: "À venir",
     demoUrl: null,
-    codeUrl: null,
   },
 ] as const;

@@ -1,19 +1,36 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export function ThemeToggle({ className = "" }: { className?: string }) {
+  const [isDark, setIsDark] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setIsDark(document.documentElement.classList.contains("dark"));
+  }, []);
+
   function toggle() {
     const next = !document.documentElement.classList.contains("dark");
     document.documentElement.classList.toggle("dark", next);
+    setIsDark(next);
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {}
   }
 
+  const label =
+    isDark === null
+      ? "Basculer le thème"
+      : isDark
+        ? "Passer en mode clair"
+        : "Passer en mode sombre";
+
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label="Basculer le thème"
+      aria-label={label}
+      aria-pressed={isDark ?? undefined}
       className={`flex h-10 w-10 items-center justify-center rounded-full border border-(--color-divider) transition-colors hover:border-accent ${className}`}
     >
       <svg

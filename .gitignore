@@ -42,3 +42,6 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# impeccable local session cache (machine-local, not shared)
+.impeccable/hook.cache.json
