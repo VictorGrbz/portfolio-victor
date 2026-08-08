@@ -52,8 +52,8 @@ export const projects = [
     slug: "boutique-en-ligne",
     title: "Boutique en ligne",
     summary: "Une boutique e-commerce avec catalogue, panier et paiement sécurisé.",
-    status: "À venir",
-    demoUrl: null,
+    status: "En ligne",
+    demoUrl: "https://boutique.jess-vic.ovh",
   },
   {
     slug: "reservation-en-ligne",
