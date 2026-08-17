@@ -59,8 +59,8 @@ export const projects = [
     slug: "reservation-en-ligne",
     title: "Réservation en ligne",
     summary: "Une prise de rendez-vous en ligne avec gestion des créneaux et confirmation automatique.",
-    status: "À venir",
-    demoUrl: null,
+    status: "En ligne",
+    demoUrl: "https://reservation.jess-vic.ovh",
   },
   {
     slug: "dashboard-saas",
